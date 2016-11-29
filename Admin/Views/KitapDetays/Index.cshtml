@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Data.KitapDetay>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KitapSayfaNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KitapYazari)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KitapYayinTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KitapBaskıSayısı)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KitapBoyutu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KitapDili)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KitapSayfaNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KitapYazari)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KitapYayinTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KitapBaskıSayısı)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KitapBoyutu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KitapDili)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

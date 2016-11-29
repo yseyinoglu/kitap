@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="kitap.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="kitapStoreContainer">
+    <EntitySet Name="UserSet" EntityType="kitap.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserTypeSet" EntityType="kitap.Store.UserTypeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SikayetSet" EntityType="kitap.Store.SikayetSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KategoriSet" EntityType="kitap.Store.KategoriSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KitapDetaySet" EntityType="kitap.Store.KitapDetaySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="YorumSet" EntityType="kitap.Store.YorumSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KitapİlanSet" EntityType="kitap.Store.KitapİlanSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserTypeUser" Association="kitap.Store.UserTypeUser">
+      <End Role="UserType" EntitySet="UserTypeSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserSikayet" Association="kitap.Store.UserSikayet">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Sikayet" EntitySet="SikayetSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserKitapİlan" Association="kitap.Store.UserKitapİlan">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Kitapİlan" EntitySet="KitapİlanSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserYorum" Association="kitap.Store.UserYorum">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Yorum" EntitySet="YorumSet" />
+    </AssociationSet>
+    <AssociationSet Name="KategoriKitapİlan" Association="kitap.Store.KategoriKitapİlan">
+      <End Role="Kategori" EntitySet="KategoriSet" />
+      <End Role="Kitapİlan" EntitySet="KitapİlanSet" />
+    </AssociationSet>
+    <AssociationSet Name="KitapDetayKitapİlan" Association="kitap.Store.KitapDetayKitapİlan">
+      <End Role="KitapDetay" EntitySet="KitapDetaySet" />
+      <End Role="Kitapİlan" EntitySet="KitapİlanSet" />
+    </AssociationSet>
+    <AssociationSet Name="KitapİlanYorum" Association="kitap.Store.KitapİlanYorum">
+      <End Role="Kitapİlan" EntitySet="KitapİlanSet" />
+      <End Role="Yorum" EntitySet="YorumSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserTypeId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Avatar" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTypeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Yetki" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SikayetSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Konu" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Açıklama" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KategoriSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KatagoriAdi" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KitapDetaySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KitapSayfaNo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KitapYazari" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KitapYayinTarihi" Type="datetime" Nullable="false" />
+    <Property Name="KitapBaskıSayısı" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KitapBoyutu" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KitapDili" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YorumSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" Nullable="false" />
+    <Property Name="Verified" Type="bit" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="KitapİlanId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KitapİlanSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Baslik" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KitapSayfaNo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KitapFiyat" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KitapTarih" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="KategoriId" Type="int" Nullable="false" />
+    <Property Name="KitapDetayId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UserTypeUser">
+    <End Role="UserType" Type="kitap.Store.UserTypeSet" Multiplicity="1" />
+    <End Role="User" Type="kitap.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserSikayet">
+    <End Role="User" Type="kitap.Store.UserSet" Multiplicity="1" />
+    <End Role="Sikayet" Type="kitap.Store.SikayetSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sikayet">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserKitapİlan">
+    <End Role="User" Type="kitap.Store.UserSet" Multiplicity="1" />
+    <End Role="Kitapİlan" Type="kitap.Store.KitapİlanSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kitapİlan">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserYorum">
+    <End Role="User" Type="kitap.Store.UserSet" Multiplicity="1" />
+    <End Role="Yorum" Type="kitap.Store.YorumSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Yorum">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KategoriKitapİlan">
+    <End Role="Kategori" Type="kitap.Store.KategoriSet" Multiplicity="1" />
+    <End Role="Kitapİlan" Type="kitap.Store.KitapİlanSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kitapİlan">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KitapDetayKitapİlan">
+    <End Role="KitapDetay" Type="kitap.Store.KitapDetaySet" Multiplicity="1" />
+    <End Role="Kitapİlan" Type="kitap.Store.KitapİlanSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KitapDetay">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kitapİlan">
+        <PropertyRef Name="KitapDetayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KitapİlanYorum">
+    <End Role="Kitapİlan" Type="kitap.Store.KitapİlanSet" Multiplicity="1" />
+    <End Role="Yorum" Type="kitap.Store.YorumSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kitapİlan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Yorum">
+        <PropertyRef Name="KitapİlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="kitap" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="kitapContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserSet" EntityType="kitap.User" />
+          <EntitySet Name="UserTypeSet" EntityType="kitap.UserType" />
+          <EntitySet Name="SikayetSet" EntityType="kitap.Sikayet" />
+          <EntitySet Name="KategoriSet" EntityType="kitap.Kategori" />
+          <EntitySet Name="KitapDetaySet" EntityType="kitap.KitapDetay" />
+          <EntitySet Name="YorumSet" EntityType="kitap.Yorum" />
+          <EntitySet Name="KitapİlanSet" EntityType="kitap.Kitapİlan" />
+          <AssociationSet Name="UserTypeUser" Association="kitap.UserTypeUser">
+            <End Role="UserType" EntitySet="UserTypeSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserSikayet" Association="kitap.UserSikayet">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Sikayet" EntitySet="SikayetSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserKitapİlan" Association="kitap.UserKitapİlan">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Kitapİlan" EntitySet="KitapİlanSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserYorum" Association="kitap.UserYorum">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Yorum" EntitySet="YorumSet" />
+          </AssociationSet>
+          <AssociationSet Name="KategoriKitapİlan" Association="kitap.KategoriKitapİlan">
+            <End Role="Kategori" EntitySet="KategoriSet" />
+            <End Role="Kitapİlan" EntitySet="KitapİlanSet" />
+          </AssociationSet>
+          <AssociationSet Name="KitapDetayKitapİlan" Association="kitap.KitapDetayKitapİlan">
+            <End Role="KitapDetay" EntitySet="KitapDetaySet" />
+            <End Role="Kitapİlan" EntitySet="KitapİlanSet" />
+          </AssociationSet>
+          <AssociationSet Name="KitapİlanYorum" Association="kitap.KitapİlanYorum">
+            <End Role="Kitapİlan" EntitySet="KitapİlanSet" />
+            <End Role="Yorum" EntitySet="YorumSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Mail" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Avatar" Type="Binary" Nullable="false" />
+          <NavigationProperty Name="UserType" Relationship="kitap.UserTypeUser" FromRole="User" ToRole="UserType" />
+          <NavigationProperty Name="Sikayet" Relationship="kitap.UserSikayet" FromRole="User" ToRole="Sikayet" />
+          <NavigationProperty Name="Kitapİlan" Relationship="kitap.UserKitapİlan" FromRole="User" ToRole="Kitapİlan" />
+          <NavigationProperty Name="Yorum" Relationship="kitap.UserYorum" FromRole="User" ToRole="Yorum" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Yetki" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="kitap.UserTypeUser" FromRole="UserType" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Sikayet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Konu" Type="String" Nullable="false" />
+          <Property Name="Açıklama" Type="String" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="kitap.UserSikayet" FromRole="Sikayet" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KatagoriAdi" Type="String" Nullable="false" />
+          <NavigationProperty Name="Kitapİlan" Relationship="kitap.KategoriKitapİlan" FromRole="Kategori" ToRole="Kitapİlan" />
+        </EntityType>
+        <EntityType Name="KitapDetay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KitapSayfaNo" Type="String" Nullable="false" />
+          <Property Name="KitapYazari" Type="String" Nullable="false" />
+          <Property Name="KitapYayinTarihi" Type="DateTime" Nullable="false" />
+          <Property Name="KitapBaskıSayısı" Type="String" Nullable="false" />
+          <Property Name="KitapBoyutu" Type="String" Nullable="false" />
+          <Property Name="KitapDili" Type="String" Nullable="false" />
+          <NavigationProperty Name="Kitapİlan" Relationship="kitap.KitapDetayKitapİlan" FromRole="KitapDetay" ToRole="Kitapİlan" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" />
+          <Property Name="Verified" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="kitap.UserYorum" FromRole="Yorum" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kitapİlan" Relationship="kitap.KitapİlanYorum" FromRole="Yorum" ToRole="Kitapİlan" />
+          <Property Name="KitapİlanId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kitapİlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baslik" Type="String" Nullable="false" />
+          <Property Name="KitapSayfaNo" Type="String" Nullable="false" />
+          <Property Name="KitapFiyat" Type="String" Nullable="false" />
+          <Property Name="KitapTarih" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="kitap.UserKitapİlan" FromRole="Kitapİlan" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kategori" Relationship="kitap.KategoriKitapİlan" FromRole="Kitapİlan" ToRole="Kategori" />
+          <Property Name="KategoriId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="KitapDetay" Relationship="kitap.KitapDetayKitapİlan" FromRole="Kitapİlan" ToRole="KitapDetay" />
+          <Property Name="KitapDetayId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Yorum" Relationship="kitap.KitapİlanYorum" FromRole="Kitapİlan" ToRole="Yorum" />
+        </EntityType>
+        <Association Name="UserTypeUser">
+          <End Type="kitap.UserType" Role="UserType" Multiplicity="1" />
+          <End Type="kitap.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserSikayet">
+          <End Type="kitap.User" Role="User" Multiplicity="1" />
+          <End Type="kitap.Sikayet" Role="Sikayet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sikayet">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserKitapİlan">
+          <End Type="kitap.User" Role="User" Multiplicity="1" />
+          <End Type="kitap.Kitapİlan" Role="Kitapİlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kitapİlan">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserYorum">
+          <End Type="kitap.User" Role="User" Multiplicity="1" />
+          <End Type="kitap.Yorum" Role="Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KategoriKitapİlan">
+          <End Type="kitap.Kategori" Role="Kategori" Multiplicity="1" />
+          <End Type="kitap.Kitapİlan" Role="Kitapİlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kitapİlan">
+              <PropertyRef Name="KategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KitapDetayKitapİlan">
+          <End Type="kitap.KitapDetay" Role="KitapDetay" Multiplicity="1" />
+          <End Type="kitap.Kitapİlan" Role="Kitapİlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KitapDetay">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kitapİlan">
+              <PropertyRef Name="KitapDetayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KitapİlanYorum">
+          <End Type="kitap.Kitapİlan" Role="Kitapİlan" Multiplicity="1" />
+          <End Type="kitap.Yorum" Role="Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kitapİlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="KitapİlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="kitapStoreContainer" CdmEntityContainer="kitapContainer">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kitap.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kitap.UserType)">
+        <MappingFragment StoreEntitySet="UserTypeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SikayetSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kitap.Sikayet)">
+        <MappingFragment StoreEntitySet="SikayetSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Konu" ColumnName="Konu" />
+          <ScalarProperty Name="Açıklama" ColumnName="Açıklama" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KategoriSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kitap.Kategori)">
+        <MappingFragment StoreEntitySet="KategoriSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KatagoriAdi" ColumnName="KatagoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KitapDetaySet">
+      <EntityTypeMapping TypeName="IsTypeOf(kitap.KitapDetay)">
+        <MappingFragment StoreEntitySet="KitapDetaySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KitapSayfaNo" ColumnName="KitapSayfaNo" />
+          <ScalarProperty Name="KitapYazari" ColumnName="KitapYazari" />
+          <ScalarProperty Name="KitapYayinTarihi" ColumnName="KitapYayinTarihi" />
+          <ScalarProperty Name="KitapBaskıSayısı" ColumnName="KitapBaskıSayısı" />
+          <ScalarProperty Name="KitapBoyutu" ColumnName="KitapBoyutu" />
+          <ScalarProperty Name="KitapDili" ColumnName="KitapDili" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YorumSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kitap.Yorum)">
+        <MappingFragment StoreEntitySet="YorumSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="KitapİlanId" ColumnName="KitapİlanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KitapİlanSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kitap.Kitapİlan)">
+        <MappingFragment StoreEntitySet="KitapİlanSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+          <ScalarProperty Name="KitapSayfaNo" ColumnName="KitapSayfaNo" />
+          <ScalarProperty Name="KitapFiyat" ColumnName="KitapFiyat" />
+          <ScalarProperty Name="KitapTarih" ColumnName="KitapTarih" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+          <ScalarProperty Name="KitapDetayId" ColumnName="KitapDetayId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

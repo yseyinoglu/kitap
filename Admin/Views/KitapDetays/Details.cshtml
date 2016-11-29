@@ -1,0 +1,66 @@
+﻿@model Data.KitapDetay
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KitapDetay</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapSayfaNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapSayfaNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapYazari)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapYazari)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapYayinTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapYayinTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapBaskıSayısı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapBaskıSayısı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapBoyutu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapBoyutu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapDili)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapDili)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

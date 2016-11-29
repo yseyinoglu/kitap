@@ -1,0 +1,74 @@
+﻿@model Data.Kitapİlan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kitapİlan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapSayfaNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapSayfaNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapFiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapFiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapTarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapTarih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori.KatagoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.KatagoriAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapDetay.KitapSayfaNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapDetay.KitapSayfaNo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

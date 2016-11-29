@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a532dbc7e05541b58f954cd2e99cfb76" Name="Diagram1" DisplayType="true" >
+        <EntityTypeShape EntityType="kitap.User" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="kitap.UserType" Width="1.5" PointX="2.375" PointY="0.5" />
+        <EntityTypeShape EntityType="kitap.Sikayet" Width="1.5" PointX="4.25" PointY="0.5" />
+        <EntityTypeShape EntityType="kitap.Kategori" Width="1.5" PointX="6" PointY="0.5" />
+        <EntityTypeShape EntityType="kitap.KitapDetay" Width="1.5" PointX="7.75" PointY="0.5" />
+        <EntityTypeShape EntityType="kitap.Yorum" Width="1.5" PointX="9.875" PointY="0.5" />
+        <EntityTypeShape EntityType="kitap.Kitapİlan" Width="1.5" PointX="4.25" PointY="2.75" />
+        <AssociationConnector Association="kitap.UserTypeUser" />
+        <AssociationConnector Association="kitap.UserSikayet" />
+        <AssociationConnector Association="kitap.UserKitapİlan" />
+        <AssociationConnector Association="kitap.UserYorum" />
+        <AssociationConnector Association="kitap.KategoriKitapİlan" />
+        <AssociationConnector Association="kitap.KitapDetayKitapİlan" />
+        <AssociationConnector Association="kitap.KitapİlanYorum" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
