@@ -1,0 +1,36 @@
+﻿@model IQueryable<Data.Kitapİlan>
+@{
+    ViewBag.Title = "Anasayfa";
+}
+@foreach (var kitap in Model)
+{
+    <div class="row">
+        <h2>@kitap.Baslik</h2>
+        <div>
+           <span>Kitap  Fiyatı : </span> @Html.Raw(kitap.KitapFiyat)<span>$</span>
+            <br />
+           <span> Kitap Boyutu : </span> @Html.Raw(kitap.KitapDetay.KitapBoyutu)
+            <br />
+            <span> Sayfa No: </span>@Html.Raw(kitap.KitapSayfaNo)
+            <br />
+            <span>Kitap Boyutu: </span>@Html.Raw(kitap.KitapDetay.KitapBoyutu)
+            <br />
+            <span>Kitap Dili: </span>@Html.Raw(kitap.KitapDetay.KitapDili)
+            <br />
+            <span>Yazar: </span>@Html.Raw(kitap.KitapDetay.KitapYazari)
+            <br />
+            <span>Yayınlanma Tarihi: </span>@Html.Raw(kitap.KitapDetay.KitapYayinTarihi)
+        </div>
+        <div class="well posts-detail">
+            @Html.ActionLink("Devamını oku", "Show", "Kitap", new { id = kitap.Id }, null) |
+            @Html.ActionLink(kitap.Kategori.KatagoriAdi, "Index", "Posts", new { id = kitap.Kategori.Id }, null) |
+            @kitap.Yorum.Count Yorum |
+            <span class="glyphicon glyphicon-time"></span> @kitap.KitapTarih.ToString()
+        </div>
+    </div>
+}
+<hr />
+<div class="row pull-right">
+    @Html.ActionLink("Sonraki sayfa", "Index",
+    new { start = ViewBag.start, pageSize = ViewBag.pageSize })
+</div>
